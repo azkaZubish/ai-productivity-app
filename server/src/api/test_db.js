@@ -1,22 +1,18 @@
 // import mongoose from "mongoose";
 // import connectDB from "../config/db";
 require('dotenv').config()
-const mongoose = require('mongoose')
 const connectDB = require('../config/db')
+const Goal = require('../models/Goal')
 
 connectDB()
 
-const goalSchema = new mongoose.Schema({
-    title: String,
-    description: String,
-});
-
-const Goal = mongoose.model('Goal', goalSchema)
 async function testDB() {
   try {
     const testGoal = new Goal({
       title: "Learn React",
-      description: "In 15 days",
+      duration: "15 days",
+      hoursPerDay: 6,
+      skill: 'Intermediate'
     });
 
     const savedGoal = await testGoal.save();
